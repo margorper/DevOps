@@ -1,0 +1,23 @@
+first update rsync
+with debian installs run the following command
+sudo apt-get install rsync
+This is to get the latest versions of rsync
+then run in the command
+sudo rsync -aAXv --delete --dry-run --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* --exclude=/run/* --exclude=/mnt/* --exclude=/media/* --exclude="swapfile" --exclude="lost+found" --exclude=".cache" --exclude="Downloads" --exclude=".VirtualBoxVMs"--exclude=".ecryptfs" / /(backup_mount_or_drive)
+
+(backup_mount_or_drive), on mine I'm using a USB stick, so it's /media/Jake/BACKUP
+
+the -aAXv
+-a Archive mode
+-A preserve Access Control List
+-X presetve extrended attributes
+-v will show the progress of the backup
+
+the exclude files, it to exclude files and directories that don't need to be backed up.
+
+if you want to schedule it. 
+run crontab -e
+then read the comments about how to schedule stuff. 
+0 9 * * 1 sudo rsync -aAXv --delete --dry-run --exclude=/dev/* --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* --exclude=/run/* --exclude=/mnt/* --exclude=/media/* --exclude="swapfile" --exclude="lost+found" --exclude=".cache" --exclude="Downloads" --exclude=".VirtualBoxVMs"--exclude=".ecryptfs" / /(backup_mount_or_drive)
+
+this will run the command at 9 AM on the first day of the week.
